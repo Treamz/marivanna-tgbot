@@ -1,0 +1,69 @@
+CREATE TABLE `monday_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first` longtext NULL,
+  `second` longtext NULL,
+  `third` longtext NULL,
+  `fourth` longtext NULL,
+  `fifth` longtext NULL, 
+  `sixth` longtext NULL, 
+  `seventh` longtext NULL, 
+  `eighth` longtext NULL,
+  `chatidd` int NOT NULL, 
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `tuesday_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first` longtext NULL,
+  `second` longtext NULL,
+  `third` longtext NULL,
+  `fourth` longtext NULL,
+  `fifth` longtext NULL, 
+  `sixth` longtext NULL, 
+  `seventh` longtext NULL, 
+  `eighth` longtext NULL,
+  `chatidd` int NOT NULL, 
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `wednesday_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first` longtext NULL,
+  `second` longtext NULL,
+  `third` longtext NULL,
+  `fourth` longtext NULL,
+  `fifth` longtext NULL, 
+  `sixth` longtext NULL, 
+  `seventh` longtext NULL, 
+  `eighth` longtext NULL,
+  `chatidd` int NOT NULL, 
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `thursday_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first` longtext NULL,
+  `second` longtext NULL,
+  `third` longtext NULL,
+  `fourth` longtext NULL,
+  `fifth` longtext NULL, 
+  `sixth` longtext NULL, 
+  `seventh` longtext NULL, 
+  `eighth` longtext NULL,
+  `chatidd` int NOT NULL, 
+  PRIMARY KEY (`id`)
+) ;
+
+CREATE TABLE `friday_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first` longtext NULL,
+  `second` longtext NULL,
+  `third` longtext NULL,
+  `fourth` longtext NULL,
+  `fifth` longtext NULL, 
+  `sixth` longtext NULL, 
+  `seventh` longtext NULL, 
+  `eighth` longtext NULL,
+  `chatidd` int NOT NULL, 
+  PRIMARY KEY (`id`)
+) 
