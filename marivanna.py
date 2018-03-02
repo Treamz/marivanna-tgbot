@@ -6,8 +6,6 @@ import pymysql
 import time
 from time import sleep
 
-#API_TOKEN = '547002206:AAGkD6OuIpOvcL3S0EdY6BArAfNdo1bXRkw' # Serega
-
 API_TOKEN = 'YOUR API KEY' # TG BOT KEY
 
 daysweek = ['/monday - Понедельник','/tuesday - Вторник','/wednesday - Среда','/thursday - Четверг', '/friday - Пятница',]
