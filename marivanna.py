@@ -6,9 +6,9 @@ import pymysql
 import time
 from time import sleep
 
-API_TOKEN = 'YOUR API KEY' # TG BOT KEY
+#API_TOKEN = '547002206:AAGkD6OuIpOvcL3S0EdY6BArAfNdo1bXRkw' # Serega
 
-bot = telebot.TeleBot(API_TOKEN)
+API_TOKEN = 'YOUR API KEY' # TG BOT KEY
 
 daysweek = ['/monday - Понедельник','/tuesday - Вторник','/wednesday - Среда','/thursday - Четверг', '/friday - Пятница',]
 
@@ -52,57 +52,24 @@ def addsch(message):
      print(info)
      bot.send_message(message.chat.id, info)
 
-
-# Handle TUESDAY
-@bot.message_handler(commands=['addtuesday'])
+# Handle add day
+@bot.message_handler(commands=['addmonday', 'addtuesday', 'addwednesday', 'addthursday', 'addfriday'])
 def add_tuesday(message):
     chat_id = message.chat.id
-    day = "mysql.tuesday_info"
+    if message.text == "/addmonday":
+        day = "mysql.monday_info"
+    if message.text == "/addtuesday":
+        day = "mysql.tuesday_info"
+    if message.text == "/addwednesday":
+        day = "mysql.wednesday_info"
+    if message.text == "/addthursday":
+        day = "mysql.thursday_info"
+    if message.text == "/addfriday":
+        day = "mysql.friday_info"
     pares = Pares(day)
     pares_dict[chat_id] = pares
     msg = bot.reply_to(message, 'Какая у тебя первая пара? Если ее нет пиши 0')
     bot.register_next_step_handler(msg, process_first_step)
-
-# Handle Monday
-@bot.message_handler(commands=['addmonday'])
-def add_tuesday(message):
-    chat_id = message.chat.id
-    day = "mysql.monday_info"
-    pares = Pares(day)
-    pares_dict[chat_id] = pares
-    msg = bot.reply_to(message, 'Какая у тебя первая пара? Если ее нет пиши 0')
-    bot.register_next_step_handler(msg, process_first_step)
-
-# Handle thursday_info
-@bot.message_handler(commands=['addthursday'])
-def add_thursday(message):
-    chat_id = message.chat.id
-    day = "mysql.thursday_info"
-    pares = Pares(day)
-    pares_dict[chat_id] = pares
-    msg = bot.reply_to(message, 'Какая у тебя первая пара? Если ее нет пиши 0')
-    bot.register_next_step_handler(msg, process_first_step)
-
-# Handle wednesday_info
-@bot.message_handler(commands=['addwednesday'])
-def add_wednesday(message):
-    chat_id = message.chat.id
-    day = "mysql.wednesday_info"
-    pares = Pares(day)
-    pares_dict[chat_id] = pares
-    msg = bot.reply_to(message, 'Какая у тебя первая пара? Если ее нет пиши 0')
-    bot.register_next_step_handler(msg, process_first_step)
-
-# Handle friday_info
-@bot.message_handler(commands=['addfriday'])
-def add_friday(message):
-    chat_id = message.chat.id
-    day = "mysql.friday_info"
-    pares = Pares(day)
-    pares_dict[chat_id] = pares
-    msg = bot.reply_to(message, 'Какая у тебя первая пара? Если ее нет пиши 0')
-    bot.register_next_step_handler(msg, process_first_step)
-
 
 def process_first_step(message):
     try:
@@ -237,36 +204,6 @@ def process_ninth_step(message):
            bot.send_message(chat_id, 'Пары не сохранены') 
     except Exception as e:
         bot.reply_to(message, 'oooop23s')
-
-
-@bot.message_handler(commands=['tuesday'])
-def tuesday_info(message):
-
-     try:
-         conn = pymysql.connect(host='localhost', port=3306, user='mysql',passwd='mysql', db='mysql', use_unicode=True, charset="utf8")
-         cur = conn.cursor(pymysql.cursors.DictCursor)   
-         chatidd = str(message.chat.id)  
-         ssql = "SELECT first, second, third, fourth, fifth, sixth, seventh, eighth, chatidd FROM mysql.tuesday_info WHERE chatidd='{}'".format(chatidd)
-         cur.execute(ssql)
-         for row in cur.fetchall():
-           try_sch_mon = ('<b>Первая:</b> ' + row['first'],'<b>Вторая:</b> ' + row['second'],'<b>Третья:</b> ' + row['third'],'<b>Четвертая:</b> ' + row['fourth'],'<b>Пятая:</b> ' + row['fifth'],'<b>Шестая:</b> ' + row['sixth'],'<b>Седьмая:</b> ' + row['seventh'],'<b>Восьмая:</b> ' + row['eighth'])
-           print('***********************************')
-           #print('\n Первая:' + row['first'],'\n Вторая: ' + row['second'],'\n Третья: ' + row['third'],'\n Четвертая: ' + row['fourth'],'\n Пятая: ' + row['fifth'],'\n Шестая: ' + row['sixth'],'\n Седьмая: ' + row['seventh'],'\n Восьмая: ' + row['eighth'])
-           print('***********************************')
-       
-           for item in try_sch_mon:
-             if not item.find("Пары") != -1:
-                 print(item)
-                 
-                 bot.send_message(message.chat.id, item, parse_mode="HTML")
-           
-           
-           #try_sch_mon = ('\n'.join(try_sch_mon))
-           #bot.send_message(message.chat.id, try_sch_mon, parse_mode="HTML")
-               
-     except:     
-
-         bot.send_message(message.chat.id, 'Сорри,чет не получилось')
 
 
 @bot.message_handler(commands=['monday', 'tuesday', 'wednesday', 'thursday', 'friday'])
