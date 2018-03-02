@@ -1,4 +1,5 @@
 # Copyright Ivan Chernoknizhnikov t.me/treamz
+# https://github.com/Treamz/
 
 import telebot
 from telebot import types
