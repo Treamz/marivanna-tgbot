@@ -9,7 +9,6 @@ from time import sleep
 
 API_TOKEN = 'YOUR API KEY' # TG BOT KEY
 
-
 daysweek = ['/monday - Понедельник','/tuesday - Вторник','/wednesday - Среда','/thursday - Четверг', '/friday - Пятница',]
 del_daysweek = ['/del_monday - Понедельник','/del_tuesday - Вторник','/del_wednesday - Среда','/del_thursday - Четверг', '/del_friday - Пятница',]
 # Handle 'start' and 'help'
@@ -45,16 +44,23 @@ def delete(message):
      bot.register_next_step_handler(msg, process_first_step_delete)
     
 def process_first_step_delete(message):
+    chat_id = message.chat.id
+    conn = pymysql.connect(host='localhost', port=3306, user='mysql',passwd='mysql', db='mysql', use_unicode=True, charset="utf8")
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+    chatidd = str(message.chat.id)
     if message.text =="/del_monday":
-        print("monday")
+        dday = "mysql.monday_info"
     if message.text =="/del_tuesday":
-        print("teuesday")
+        dday = "mysql.tuesday_info"
     if message.text =="/del_wednesday":
-        print("wednesday")
+        dday = "mysql.wednesday_info"
     if message.text =="/del_thursday":
-        print("thursday")
+        dday = "mysql.thursday_info"
     if message.text =="/del_friday":
-        print("friday")
+        dday = "mysql.friday_info"
+    isql = "DELETE FROM {} WHERE chatidd={}".format(dday, chatidd)
+    cur.execute(isql)
+    conn.commit()
 
 # Handle 'start' and 'help'
 @bot.message_handler(commands=['start'])
