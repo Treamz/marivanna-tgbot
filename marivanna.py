@@ -9,8 +9,9 @@ from time import sleep
 
 API_TOKEN = 'YOUR API KEY' # TG BOT KEY
 
-daysweek = ['/monday - Понедельник','/tuesday - Вторник','/wednesday - Среда','/thursday - Четверг', '/friday - Пятница',]
 
+daysweek = ['/monday - Понедельник','/tuesday - Вторник','/wednesday - Среда','/thursday - Четверг', '/friday - Пятница',]
+del_daysweek = ['/del_monday - Понедельник','/del_tuesday - Вторник','/del_wednesday - Среда','/del_thursday - Четверг', '/del_friday - Пятница',]
 # Handle 'start' and 'help'
 
 pares_dict = {}
@@ -37,6 +38,23 @@ def nullcheack():
         
 
 
+# Handle delete sch
+@bot.message_handler(commands=['delete'])
+def delete(message):
+     msg = bot.send_message(message.chat.id, 'Какой день вы хотите удалить? \n' + ('\n'.join(del_daysweek)))
+     bot.register_next_step_handler(msg, process_first_step_delete)
+    
+def process_first_step_delete(message):
+    if message.text =="/del_monday":
+        print("monday")
+    if message.text =="/del_tuesday":
+        print("teuesday")
+    if message.text =="/del_wednesday":
+        print("wednesday")
+    if message.text =="/del_thursday":
+        print("thursday")
+    if message.text =="/del_friday":
+        print("friday")
 
 # Handle 'start' and 'help'
 @bot.message_handler(commands=['start'])
